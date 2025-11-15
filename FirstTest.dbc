@@ -33,20 +33,24 @@ NS_ :
 
 BS_: 
 BU_: 
-BO_ 2147484704 MessageOne: 0 Vector__XXX
+BO_ 1056 MessageOne: 0 Vector__XXX
    SG_ RequestBytes : 7|8@0+ (1,0) [0|1] "" Vector__XXX
 
-BO_ 2147485328 MessageTwo: 0 Vector__XXX
-   SG_ MyReading : 7|8@0+ (1,0) [0|1] "" Vector__XXX
+BO_ 1680 MessageTwo: 0 Vector__XXX
+   SG_ MyReading : 7|16@0+ (1,0) [0|1] "" Vector__XXX
 
 BA_DEF_ BO_ "GenMsgBackgroundColor" STRING ;
 BA_DEF_ BO_ "GenMsgForegroundColor" STRING ;
 BA_DEF_ BO_ "matchingcriteria" INT 0 0;
 BA_DEF_ BO_ "filterlabeling" INT 0 0;
-BA_ "GenMsgBackgroundColor" BO_ 2147484704 "#ff557f";
-BA_ "GenMsgForegroundColor" BO_ 2147484704 "#000000";
-BA_ "GenMsgBackgroundColor" BO_ 2147485328 "#00aa7f";
+BA_DEF_ BO_ "matchingcriteria" INT 0 0;
+BA_DEF_ BO_ "filterlabeling" INT 0 0;
+BA_ "GenMsgBackgroundColor" BO_ 1056 "#ff557f";
+BA_ "GenMsgForegroundColor" BO_ 1056 "#000000";
+BA_ "GenMsgBackgroundColor" BO_ 1680 "#00aa7f";
 BA_DEF_DEF_ "GenMsgBackgroundColor" "#ffffff";
 BA_DEF_DEF_ "GenMsgForegroundColor" "#000000";
 BA_DEF_DEF_ "matchingcriteria" 0;
 BA_DEF_DEF_ "filterlabeling" 1;
+BA_DEF_DEF_ "matchingcriteria" 0;
+BA_DEF_DEF_ "filterlabeling" true;

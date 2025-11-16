@@ -16,12 +16,12 @@ The CAN frames are received and sent via an MCP2515 CAN controller.
 // create MCP2515 object
 /* todo 1 */
 
-// Assign PB_12 the value 10 (digital pin 10)
-const int CS_PIN = 10; 
+// Assign PB_2 the value 10 (digital pin 10)
+const int CS_PIN = PB2; // Better practice to write the PIN number literally
 // Assign PB_0 the value 8 (digital pin 8)
 const int LED_PIN = 8; 
 // Creating an MCP2515 object at PIN_PB2
-MCP2515 canName(CS_PIN);
+MCP2515 mcpCan(CS_PIN);
 
 void setup() {
     // set the pinMode on the input pin
@@ -29,12 +29,14 @@ void setup() {
     // set the pinMode on the LED pin
     pinMode(LED_PIN, INPUT);
     // reset command to the MCP2515 CAN controller
-    canName.reset();
+    mcpCan.reset();
     // Set the MCP2515's can communication speed and crystal frequency
+    // Crystal frequency: critical timing reference, often described as the 
+    // "heartbeat" or "clock signal" of digital circuits, microprocessors, and communication systems
     // Initialize the CAN controller at 500kbps
-    canName.setBitrate(CAN_500KBPS, MCP_16MHZ);
+    mcpCan.setBitrate(CAN_500KBPS, MCP_20MHZ);
     // Allow CAN to send and receive messages on the physical CAN bus
-    canName.setNormalMode();
+    mcpCan.setNormalMode();
 }
 
 void loop() {
@@ -46,7 +48,7 @@ void loop() {
 
     // check if a CAN frame is received
     // Pass the received message to rxFrame
-    if (canName.readMessage(&rxFrame) == MCP2515::ERROR_OK) {
+    if (mcpCan.readMessage(&rxFrame) == MCP2515::ERROR_OK) {
         // check if the received frame is of ID 0x420 and first data byte is 0x69
         if ((rxFrame.can_id == 0x420) && (rxFrame.data[0] == 0x69)) {
             // turn on the LED to indicate activity
@@ -64,7 +66,7 @@ void loop() {
 
             // send the CAN frame
             // Sending it over the CAN bus using the MCP2515 object
-            canName.sendMessage(&txFrame);
+            mcpCan.sendMessage(&txFrame);
 
             // turn off the LED after sending
             digitalWrite(LED_PIN, LOW);
